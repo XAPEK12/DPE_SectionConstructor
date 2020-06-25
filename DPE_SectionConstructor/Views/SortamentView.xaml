@@ -1,0 +1,86 @@
+﻿<Window x:Class="DPE_SectionConstructor.Views.SortamentView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DPE_SectionConstructor.Views"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"        
+        mc:Ignorable="d"
+        Title="SortamentView" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="250" MinHeight="250" MaxHeight="250"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="250"/>
+            </Grid.ColumnDefinitions>
+
+
+            <TreeView ItemsSource="{Binding TVItemsSource}" Grid.Column="1">
+                <TreeView.ItemContainerStyle>
+                    <Style TargetType="{x:Type TreeViewItem}">
+                        <Setter Property="IsSelected" Value="{Binding IsSelected}" />
+                    </Style>
+                </TreeView.ItemContainerStyle>
+                <TreeView.ItemTemplate>
+                    <HierarchicalDataTemplate ItemsSource="{Binding TVItems}">
+                        <TextBlock Text="{Binding Name}" />
+                    </HierarchicalDataTemplate>
+                </TreeView.ItemTemplate>
+            </TreeView>
+
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height ="220"/>
+                    <RowDefinition Height="30" />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Margin="5">
+                    P - масса одного метра погонного <LineBreak/>
+                    h - высота сечения <LineBreak/>
+                    b - ширина сечения <LineBreak/>
+                    s - толщина (толщина стенки)  <LineBreak/>
+                    t - толщина полки <LineBreak/>
+                    r - радиус перехода стенки в полку <LineBreak/>
+                    d - деаметр <LineBreak/>
+                    S - площадь <LineBreak/>
+                    Ix, Iy - моменты инерции <LineBreak/>
+                    Wx, Wy - моменты сопротивления <LineBreak/>
+                    Sx, Sy - статические моменты <LineBreak/>
+                    ix, iy - радиусы инерции <LineBreak/>
+                    It - момент инерции при кручении <LineBreak/>
+                </TextBlock>
+                <Button Content="Add" Grid.Row="1" Height="25" Width="100" 
+                        Margin="5 2 5 0" HorizontalAlignment="Left"
+                        Command="{Binding SortamentAddCommand}"/>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="609*"/>
+                <ColumnDefinition Width="185*"/>
+            </Grid.ColumnDefinitions>
+            <DataGrid  Margin="5" AutoGenerateColumns="True"
+                           ItemsSource="{Binding DataGridItemSource, UpdateSourceTrigger=PropertyChanged}"
+                           SelectedIndex="{Binding SelectedRow}"
+                           ColumnHeaderHeight="30" RowHeight="20" IsReadOnly="True"  
+                           CanUserSortColumns="False" Grid.ColumnSpan="2"
+                           
+                           />
+        </Grid>
+
+
+        <!--<Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition MaxHeight="400"/>
+                <RowDefinition Height="50" MaxHeight="50"/>
+            </Grid.RowDefinitions>            
+            <TabControl Name="tc_Main" Grid.Row="0"/>
+            <Button Click="Button_Click" Height="30" Width="100" Content="Add" Grid.Row="1" HorizontalAlignment="Left" Margin="10"/>
+        </Grid>-->
+    </Grid>
+</Window>
