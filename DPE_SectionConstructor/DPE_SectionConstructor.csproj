@@ -47,7 +47,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Printing" />
     <Reference Include="System.Windows.Interactivity">
-      <HintPath>..\..\..\..\..\Desktop\System.Windows.Interactivity.dll</HintPath>
+      <HintPath>.\System.Windows.Interactivity.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -67,10 +67,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\AngleBeam.cs" />
+    <Compile Include="Models\ChannelBeam.cs" />
+    <Compile Include="Models\CProfile.cs" />
     <Compile Include="Models\SortamentModels\DataGridModel.cs" />
     <Compile Include="Models\IBeam.cs" />
     <Compile Include="Models\RectPipe.cs" />
+    <Compile Include="Models\RoundPipe.cs" />
     <Compile Include="Models\SortamentModels\SortamentTypes.cs" />
+    <Compile Include="Models\TBeam.cs" />
+    <Compile Include="Models\ZProfile.cs" />
     <Compile Include="Service\DBtoDataSet.cs" />
     <Compile Include="Models\SortamentModels\TVItem.cs" />
     <Compile Include="Models\SortamentModels\TVModel.cs" />

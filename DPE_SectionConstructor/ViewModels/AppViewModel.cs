@@ -1,4 +1,5 @@
 ﻿using DPE_SectionConstructor.Model;
+using DPE_SectionConstructor.Models;
 using DPE_SectionConstructor.Service;
 using DPE_SectionConstructor.ViewModels;
 using DPE_SectionConstructor.Views;
@@ -22,7 +23,6 @@ namespace DPE_SectionConstructor
     public class AppViewModel : Base
     {
         SortamentView Sortament;
-        //TODO: Посмотреть несколько окон в MVVM
         private RelayCommand _AddFromSortamentCommand;
         public RelayCommand AddFromSortamentCommand
         {
@@ -137,6 +137,8 @@ namespace DPE_SectionConstructor
                             Sections.Remove(section);
                             SelectedSectionIndex--;
                             SelectedSection = Sections[SelectedSectionIndex];
+                            section = SelectedSection;
+                            SetThisParams();
                         }
                         
                     },
@@ -155,13 +157,14 @@ namespace DPE_SectionConstructor
             {
                 return _NextCommand ??
                     (_NextCommand = new RelayCommand(obj =>
-                    {
+                    {                       
                         SelectedSectionIndex++;
                         SelectedSection = Sections[SelectedSectionIndex];
+                        SetThisParams();
 
                     }, (obj) => Sections.Count > 1));
             }
-        } //TODO: разобраться с сохраненийм свойств сечений при переключении
+        } 
 
         private RelayCommand _PrevionsCommand;
         /// <summary>
@@ -176,6 +179,8 @@ namespace DPE_SectionConstructor
                     {
                         SelectedSectionIndex--;
                         SelectedSection = Sections[SelectedSectionIndex];
+                        SetThisParams();
+
                     }, (obj) => Sections.Count > 1));
             }
         }
@@ -212,11 +217,33 @@ namespace DPE_SectionConstructor
                 {
 
                     case "Уголок":
-                        //Sections[SelectedSectionIndex] = new AngleBeam();
+                        Sections[SelectedSectionIndex] = new AngleBeam()
+                        {
+                            h =     this.h,
+                            b =     this.b,
+                            s =     this.s,
+                            t =     this.t,
+                            r =     this.r,
+                            d =     this.d,
+                            smX =   this.smX,
+                            smY =   this.smY,
+                            Angle = this.Angle
+                        };
                         break;
 
                     case "Швеллер":
-                        //Sections[SelectedSectionIndex] = new ChannelBeam();
+                        Sections[SelectedSectionIndex] = new ChannelBeam()
+                        {
+                            h = this.h,
+                            b = this.b,
+                            s = this.s,
+                            t = this.t,
+                            r = this.r,
+                            d = this.d,
+                            smX = this.smX,
+                            smY = this.smY,
+                            Angle = this.Angle
+                        };
                         break;
 
                     case "Двутавр":
@@ -235,11 +262,33 @@ namespace DPE_SectionConstructor
                         break;
 
                     case "Тавр":
-                        //Sections[SelectedSectionIndex] = new TBeam();
+                        Sections[SelectedSectionIndex] = new TBeam()
+                        {
+                            h = this.h,
+                            b = this.b,
+                            s = this.s,
+                            t = this.t,
+                            r = this.r,
+                            d = this.d,
+                            smX = this.smX,
+                            smY = this.smY,
+                            Angle = this.Angle
+                        };
                         break;
 
                     case "Круглая труба":
-                        //Sections[SelectedSectionIndex] = new RoundPipe();
+                        Sections[SelectedSectionIndex] = new RoundPipe()
+                        {
+                            h = this.h,
+                            b = this.b,
+                            s = this.s,
+                            t = this.t,
+                            r = this.r,
+                            d = this.d,
+                            smX = this.smX,
+                            smY = this.smY,
+                            Angle = this.Angle
+                        };
                         break;
 
                     case "Прямоугольная труба":
@@ -258,11 +307,33 @@ namespace DPE_SectionConstructor
                         break;
 
                     case "Гнутый С-образный профиль":
-                        //Sections[SelectedSectionIndex] = new CProfile();
+                        Sections[SelectedSectionIndex] = new CProfile()
+                        {
+                            h = this.h,
+                            b = this.b,
+                            s = this.s,
+                            t = this.t,
+                            r = this.r,
+                            d = this.d,
+                            smX = this.smX,
+                            smY = this.smY,
+                            Angle = this.Angle
+                        };
                         break;
 
                     case "Гнутый Z-образный профиль":
-                        //Sections[SelectedSectionIndex] = new ZProfile();
+                        Sections[SelectedSectionIndex] = new ZProfile()
+                        {
+                            h = this.h,
+                            b = this.b,
+                            s = this.s,
+                            t = this.t,
+                            r = this.r,
+                            d = this.d,
+                            smX = this.smX,
+                            smY = this.smY,
+                            Angle = this.Angle
+                        };
                         break;
 
                     default:
@@ -346,12 +417,27 @@ namespace DPE_SectionConstructor
         private void AppViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName != "OxyModel" && e.PropertyName != "CommandString"
-                && e.PropertyName != "SelectedSection" )
+                && e.PropertyName != "SelectedSection" && e.PropertyName != "SelectedSectionIndex" )
             {                
                 CommandString = "Событий: " + i;
                 i++;
                 OnPropertyChanged("OxyModel");
             }
+        }
+
+        private void SetThisParams()
+        {
+            Section section = SelectedSection;
+            SelectedSectionType = section.Name;
+            this.h = section.h;
+            this.b = section.b;
+            this.s = section.s;
+            this.t = section.t;
+            this.r = section.r;
+            this.d = section.d;
+            this.smX = section.smX;
+            this.smY = section.smY;
+            this.Angle = section.Angle;
         }
                       
     }
