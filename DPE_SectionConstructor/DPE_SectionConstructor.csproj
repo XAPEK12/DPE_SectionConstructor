@@ -67,16 +67,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Models\AngleBeam.cs" />
-    <Compile Include="Models\ChannelBeam.cs" />
-    <Compile Include="Models\CProfile.cs" />
+    <Compile Include="Models\Sections\AngleBeam.cs" />
+    <Compile Include="Models\Sections\ChannelBeam.cs" />
+    <Compile Include="Models\Sections\CProfile.cs" />
     <Compile Include="Models\SortamentModels\DataGridModel.cs" />
-    <Compile Include="Models\IBeam.cs" />
-    <Compile Include="Models\RectPipe.cs" />
-    <Compile Include="Models\RoundPipe.cs" />
+    <Compile Include="Models\Sections\IBeam.cs" />
+    <Compile Include="Models\Sections\RectPipe.cs" />
+    <Compile Include="Models\Sections\RoundPipe.cs" />
     <Compile Include="Models\SortamentModels\SortamentTypes.cs" />
-    <Compile Include="Models\TBeam.cs" />
-    <Compile Include="Models\ZProfile.cs" />
+    <Compile Include="Models\Sections\TBeam.cs" />
+    <Compile Include="Models\Sections\ZProfile.cs" />
     <Compile Include="Service\DBtoDataSet.cs" />
     <Compile Include="Models\SortamentModels\TVItem.cs" />
     <Compile Include="Models\SortamentModels\TVModel.cs" />
