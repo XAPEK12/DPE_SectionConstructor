@@ -56,12 +56,12 @@ namespace DPE_SectionConstructor.ViewModels
                       var newRow = dataSet?.Tables["DataGrid"].NewRow();
                       newRow =  dataSet?.Tables["DataGrid"].Rows.Find(SelectedRow+1);
 
-                      h = RowParser.Parse(newRow, "h, см") * 10;
-                      b = RowParser.Parse(newRow, "b, см") * 10;
-                      s = RowParser.Parse(newRow, "s, см") * 10;
-                      t = RowParser.Parse(newRow, "t, см") * 10;
-                      r = RowParser.Parse(newRow, "r, см") * 10;
-                      d = RowParser.Parse(newRow, "d, см") * 10;
+                      h = RowParser.Parse(newRow, "h, см");
+                      b = RowParser.Parse(newRow, "b, см");
+                      s = RowParser.Parse(newRow, "s, см");
+                      t = RowParser.Parse(newRow, "t, см");
+                      r = RowParser.Parse(newRow, "r, см");
+                      d = RowParser.Parse(newRow, "d, см");
 
                       #region Check
 

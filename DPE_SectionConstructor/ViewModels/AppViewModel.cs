@@ -16,6 +16,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
+using static DPE_SectionConstructor.Models.Dictionary;
 
 namespace DPE_SectionConstructor
 {    
@@ -43,12 +44,16 @@ namespace DPE_SectionConstructor
         {
             if (e.PropertyName == "SortamentAddCommand")
             {
+                if(SectionTypeDictionary.TryGetValue((TVItem.SelectedItem as TVItem).ParentName.ToString(), out string value))
+                {
+                    SelectedSectionType = value;
+                }
                 this.h = (sender as SortamentViewModel).h;
                 this.b = (sender as SortamentViewModel).b;
                 this.s = (sender as SortamentViewModel).s;
                 this.t = (sender as SortamentViewModel).t;
                 this.r = (sender as SortamentViewModel).r;
-                this.d = (sender as SortamentViewModel).d;
+                this.d = (sender as SortamentViewModel).d;                
 
                 Sortament.Close();
             }
@@ -339,16 +344,17 @@ namespace DPE_SectionConstructor
                     default:
                         break;
                 }
-                
+
+                Sections[SelectedSectionIndex].Calculate();
                 SelectedSection = Sections[SelectedSectionIndex];
 
                 for (int i = 0; i< Sections.Count;i++)
                 {
                     if (i == SelectedSectionIndex)
                     {
-                        Sections[i].GetSectionData();
-                        Sections[i].GetFunctionSeriesList(RedColor)?.ForEach(_OxyModel.Series.Add);
-                        Sections[i].GetLineSeriesList(RedColor)?.ForEach(_OxyModel.Series.Add);
+                        //Sections[i].GetSectionData();
+                        //Sections[i].GetFunctionSeriesList(RedColor)?.ForEach(_OxyModel.Series.Add);
+                        //Sections[i].GetLineSeriesList(RedColor)?.ForEach(_OxyModel.Series.Add);
                     }
                     else 
                     {
@@ -356,26 +362,20 @@ namespace DPE_SectionConstructor
                         Sections[i].GetLineSeriesList(BlackColor)?.ForEach(_OxyModel.Series.Add);
                     }
                 }
-                
+
+                Sections[SelectedSectionIndex].GetSectionData();
+                Sections[SelectedSectionIndex].GetFunctionSeriesList(RedColor)?.ForEach(_OxyModel.Series.Add);
+                Sections[SelectedSectionIndex].GetLineSeriesList(RedColor)?.ForEach(_OxyModel.Series.Add);
+
                 return _OxyModel; 
             }
                         
         }
        
         public AppViewModel()
-        {           
+        {
 
-            SectionTypes = new List<string>
-            {
-                "Уголок",
-                "Швеллер",
-                "Двутавр",
-                "Тавр",
-                "Круглая труба",
-                "Прямоугольная труба",
-                "Гнутый С-образный профиль",
-                "Гнутый Z-образный профиль"
-            };
+            SectionTypes = SectionTypeDictionary.Values.ToList();
 
             this.h = 50;
             this.b = 25;
@@ -404,14 +404,14 @@ namespace DPE_SectionConstructor
                 ax.Maximum = ax.Minimum = Double.NaN;
             OxyModel.ResetAllAxes();
             this.PropertyChanged += AppViewModel_PropertyChanged;
-            OxyModel.MouseDown += OxyModel_MouseDown;
+            //OxyModel.MouseDown += OxyModel_MouseDown;
 
         }
 
-        private void OxyModel_MouseDown(object sender, OxyPlot.OxyMouseDownEventArgs e)
-        {
+        //private void OxyModel_MouseDown(object sender, OxyPlot.OxyMouseDownEventArgs e)
+        //{
             
-        }
+        //}
 
         int i = 0;
         private void AppViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)

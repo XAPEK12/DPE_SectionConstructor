@@ -15,6 +15,8 @@ namespace DPE_SectionConstructor.Service
     /// </summary>
     public class Base : INotifyPropertyChanged
     {
+
+        //TODO: Проставить зависимость отрисовки от R 
         #region Section fields
 
         protected string _Name; // Имя сечения
@@ -25,6 +27,7 @@ namespace DPE_SectionConstructor.Service
         protected double _t; //Толщина полки
         protected double _r; //Радиус перехода стенки в полку
         protected double _d; //Диаметр
+        protected double _R; //Радиус скруглений полки
 
         protected double _P; //Масса одного метра погонного
         protected double _A; //Площадь
@@ -98,6 +101,15 @@ namespace DPE_SectionConstructor.Service
             get { return _d; }
             set { _d = value; OnPropertyChanged("d"); }
         }
+        /// <summary>
+        /// Радиус перехода стенки в полку
+        /// </summary>
+        public double R 
+        {
+            get { return _R; }
+            set { _R = value; OnPropertyChanged("R"); }
+        }
+
 
         /// <summary>
         /// Масса одного метра погонного

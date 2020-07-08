@@ -1,46 +1,131 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Media.Converters;
 
 namespace DPE_SectionConstructor.Service
 {
-    //TODO:Здесь должны быть уравнения строймеха
     public static class StructMech
     {
-        public static double CalculateRectI(double b, double h)
+        /// <summary>
+        /// Координата центра тяжести
+        /// </summary>
+        /// <param name="S">Статический момент</param>
+        /// <param name="A">Площадь</param>
+        /// <returns></returns>
+        public static double GravityCenter(double S, double A)
         {
-            return b * h * h * h / 12;
-        }
-        public static double CalculateRectI(double a)
-        {
-            return a * a * a * a / 12;
-        }
-
-        public static double CalculateCircleI(double D)
-        {
-            return Math.PI * D * D * D * D / 64;
+            return S / A;
         }
 
-        public static double CalculateRectW (double b,double h)
+        /// <summary>
+        /// Статический момент иннерции
+        /// </summary>
+        /// <param name="A">Площадь</param>
+        /// <param name="a">Расстояние до оси</param>
+        /// <returns></returns>
+        public static double CalculateS(double A, double a)
         {
-            return b * h * h / 6;
+            return A * a;
         }
 
-        public static double CalculateRectW(double a)
+        /// <summary>
+        /// Площадь прямоугольника
+        /// </summary>
+        /// <param name="h">Высота</param>
+        /// <param name="b">Ширина</param>
+        /// <returns></returns>
+        public static double RectangleA(double h, double b)
         {
-            return a * a * a / 6;
+            return b * h;
         }
 
-        public static double CalculateCircleW(double D)
+        /// <summary>
+        /// Площадь квадрата
+        /// </summary>
+        /// <param name="a">Сторона квадрата</param>
+        /// <returns></returns>
+        public static double RectangleA(double a)
         {
-            return Math.PI * D * D * D / 32;
+            return Math.Pow(a, 2);
         }
 
-        public static double CalculateRingI(double D, double d)
+        /// <summary>
+        /// Площадь круга
+        /// </summary>
+        /// <param name="r">Радиус</param>
+        /// <returns></returns>
+        public static double CircleA(double r)
         {
-            return Math.PI * D * D * D * D / 64 * (1 - Math.Pow(d / D, 4));
+            return Math.PI * Math.Pow(r, 2);
         }
+
+        /// <summary>
+        /// Момент иннерции прямоугольника.
+        /// b*h^3/12
+        /// </summary>
+        /// <param name="h">Васота</param>
+        /// <param name="b">Ширина</param>
+        /// <returns></returns>
+        public static double RectangleI(double h, double b)
+        {
+            return b * Math.Pow(h, 3) / 12;
+        }
+
+        /// <summary>
+        /// Момент иннерции квадрата
+        /// a^4/12
+        /// </summary>
+        /// <param name="a">сторона квадрата</param>
+        /// <returns></returns>
+        public static double RectangleI(double a)
+        {
+            return Math.Pow(a, 4) / 12;
+        }
+
+        /// <summary>
+        /// Момент иннерции круга.
+        /// pi*d^4/64
+        /// </summary>
+        /// <param name="d">Диаметр</param>
+        /// <returns></returns>
+        public static double CircleI(double d)
+        {
+            return Math.PI * Math.Pow(d, 4) / 64;
+        }
+
+        /// <summary>
+        /// Момент иннерции относительно оси
+        /// </summary>
+        /// <param name="I">Момент иннерции относительно центральной оси</param>
+        /// <param name="A">Площпдь сечения</param>
+        /// <param name="a">Расстояние между осью и центром тяжести</param>
+        /// <returns></returns>
+        public static double MoveI(double I, double A, double a)
+        {
+            return I + Math.Pow(a, 2) * A;
+        }
+
+        /// <summary>
+        /// Радиус иннерции
+        /// </summary>
+        /// <param name="I">Момент иннерции</param>
+        /// <param name="A">Площадь</param>
+        /// <returns></returns>
+        public static double Calculatei(double I, double A)
+        {
+            return Math.Sqrt(I / A);
+        }
+
+        /// <summary>
+        /// Момент сопротивления
+        /// </summary>
+        /// <param name="I">Момент иннерции</param>
+        /// <param name="a">Расстояние до самой удаленной точки</param>
+        /// <returns></returns>
+        public static double CalculateW(double I, double a)
+        {
+            return I / a;
+        }
+
+
     }
 }

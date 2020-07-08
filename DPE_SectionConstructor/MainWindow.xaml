@@ -29,6 +29,7 @@
                 <TextBlock Text="s" Height="20" TextAlignment="Right" Margin="3"/>
                 <TextBlock Text="t" Height="20" TextAlignment="Right" Margin="3"/>
                 <TextBlock Text="r" Height="20" TextAlignment="Right" Margin="3"/>
+                <TextBlock Text="R" Height="20" TextAlignment="Right" Margin="3"/>
                 <TextBlock Text="d" Height="20" TextAlignment="Right" Margin="3"/>
                 <TextBlock Text="X" Height="20" TextAlignment="Right" Margin="3"/>
                 <TextBlock Text="Y" Height="20" TextAlignment="Right" Margin="3"/>
@@ -39,16 +40,33 @@
         <Grid Grid.Column="1">
             <StackPanel>
                 <ComboBox ItemsSource="{Binding SectionTypes, Mode=TwoWay}" SelectedItem="{Binding SelectedSectionType, UpdateSourceTrigger=PropertyChanged}" Height="22" Margin="3" />
-                <StackPanel> <!--DataContext="{Binding SelectedSection}"-->
-                    <TextBox Text="{Binding h, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Margin="3"/>
-                    <TextBox Text="{Binding b, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Margin="3"/>
-                    <TextBox Text="{Binding s, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Height="20" Margin="3"/>
-                    <TextBox Text="{Binding t, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Margin="3"/>
-                    <TextBox Text="{Binding r, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Margin="3"/>
-                    <TextBox Text="{Binding d, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Margin="3"/>
-                    <TextBox Text="{Binding smX, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Margin="3"/>
-                    <TextBox Text="{Binding smY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Margin="3"/>
-                    <TextBox Text="{Binding Angle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" Margin="3"/>                    
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel>
+                        <!--DataContext="{Binding SelectedSection}"-->
+                        <TextBox Text="{Binding h, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"     Width="90"  Height="20" Margin="3"/>
+                        <TextBox Text="{Binding b, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"     Width="90"  Height="20" Margin="3"/>
+                        <TextBox Text="{Binding s, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"     Width="90"  Height="20" Margin="3"/>
+                        <TextBox Text="{Binding t, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"     Width="90"  Height="20" Margin="3"/>
+                        <TextBox Text="{Binding r, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"     Width="90"  Height="20" Margin="3"/>
+                        <TextBox Text="{Binding R, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"     Width="90"  Height="20" Margin="3"/>
+                        <TextBox Text="{Binding d, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"     Width="90"  Height="20" Margin="3"/>
+                        <TextBox Text="{Binding smX, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"   Width="90"  Height="20" Margin="3"/>
+                        <TextBox Text="{Binding smY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"   Width="90"  Height="20" Margin="3"/>
+                        <TextBox Text="{Binding Angle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="90"  Height="20" Margin="3"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <!--DataContext="{Binding SelectedSection}"-->
+                        <TextBlock Text="см" Height="20" Margin="3"/>
+                        <TextBlock Text="см" Height="20" Margin="3"/>
+                        <TextBlock Text="см"  Height="20" Margin="3"/>
+                        <TextBlock Text="см" Height="20" Margin="3"/>
+                        <TextBlock Text="см" Height="20" Margin="3"/>
+                        <TextBlock Text="см" Height="20" Margin="3"/>
+                        <TextBlock Text="см" Height="20" Margin="3"/>
+                        <TextBlock Text="см" Height="20" Margin="3"/>
+                        <TextBlock Text="см" Height="20" Margin="3"/>
+                        <TextBlock Text="гр" Height="20" Margin="3"/>
+                    </StackPanel>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Button Command="{Binding PrevionsCommand}" Content="Previous" Width="50" Height="20" Margin="3"/>
@@ -85,17 +103,17 @@
 
         <Grid Grid.Column="4">
             <StackPanel DataContext="{Binding SelectedSection}">
-                <TextBlock Text="{Binding P }"  Height="22" TextAlignment="Left" Margin="3"/>
-                <TextBlock Text="{Binding A }"  Height="22" TextAlignment="Left" Margin="3"/>
-                <TextBlock Text="{Binding Ix }"  Height="22" TextAlignment="Left" Margin="3"/>
-                <TextBlock Text="{Binding Iy }"  Height="22" TextAlignment="Left" Margin="3"/>
-                <TextBlock Text="{Binding Wx }"  Height="22" TextAlignment="Left" Margin="3"/>
-                <TextBlock Text="{Binding Wy }"  Height="22" TextAlignment="Left" Margin="3"/>
-                <TextBlock Text="{Binding Sx }"  Height="22" TextAlignment="Left" Margin="3"/>
-                <TextBlock Text="{Binding Sy }"  Height="22" TextAlignment="Left" Margin="3"/>
-                <TextBlock Text="{Binding ix }"  Height="22" TextAlignment="Left" Margin="3"/>
-                <TextBlock Text="{Binding iy }"  Height="22" TextAlignment="Left" Margin="3"/>
-                <TextBlock Text="{Binding It }"  Height="22" TextAlignment="Left" Margin="3"/>
+                <TextBlock Text="{Binding P , StringFormat={}{0:0.00}}"  Height="22" TextAlignment="Left" Margin="3"/>
+                <TextBlock Text="{Binding A , StringFormat={}{0:0.00}}"  Height="22" TextAlignment="Left" Margin="3"/>
+                <TextBlock Text="{Binding Ix, StringFormat={}{0:0.00}}"  Height="22" TextAlignment="Left" Margin="3"/>
+                <TextBlock Text="{Binding Iy, StringFormat={}{0:0.00}}"  Height="22" TextAlignment="Left" Margin="3"/>
+                <TextBlock Text="{Binding Wx, StringFormat={}{0:0.00}}"  Height="22" TextAlignment="Left" Margin="3"/>
+                <TextBlock Text="{Binding Wy, StringFormat={}{0:0.00}}"  Height="22" TextAlignment="Left" Margin="3"/>
+                <TextBlock Text="{Binding Sx, StringFormat={}{0:0.00}}"  Height="22" TextAlignment="Left" Margin="3"/>
+                <TextBlock Text="{Binding Sy, StringFormat={}{0:0.00}}"  Height="22" TextAlignment="Left" Margin="3"/>
+                <TextBlock Text="{Binding ix, StringFormat={}{0:0.00}}"  Height="22" TextAlignment="Left" Margin="3"/>
+                <TextBlock Text="{Binding iy, StringFormat={}{0:0.00}}"  Height="22" TextAlignment="Left" Margin="3"/>
+                <TextBlock Text="{Binding It, StringFormat={}{0:0.00}}"  Height="22" TextAlignment="Left" Margin="3"/>
             </StackPanel>
         </Grid>
 

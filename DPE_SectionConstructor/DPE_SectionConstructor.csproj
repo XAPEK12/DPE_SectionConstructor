@@ -67,6 +67,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\Dictionary.cs" />
     <Compile Include="Models\Sections\AngleBeam.cs" />
     <Compile Include="Models\Sections\ChannelBeam.cs" />
     <Compile Include="Models\Sections\CProfile.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="Service\DBtoDataSet.cs" />
     <Compile Include="Models\SortamentModels\TVItem.cs" />
     <Compile Include="Models\SortamentModels\TVModel.cs" />
+    <Compile Include="Service\Helper.cs" />
     <Compile Include="Service\RelayCommand.cs" />
     <Compile Include="Models\Base.cs" />
     <Compile Include="Service\RowParser.cs" />

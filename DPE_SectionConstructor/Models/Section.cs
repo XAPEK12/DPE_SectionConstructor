@@ -51,6 +51,7 @@ namespace DPE_SectionConstructor.Model
         
         #endregion
 
+       
         #region Section methods
 
         /// <summary>
@@ -134,6 +135,7 @@ namespace DPE_SectionConstructor.Model
         /// <returns></returns>
         public List<OxyPlot.Series.LineSeries> GetLineSeriesList(OxyPlot.OxyColor color)
         {
+            
             var LineSeriesList = new List<OxyPlot.Series.LineSeries>();
             for (int i = 0; i < Actions.Count; i++)
             {                
@@ -157,6 +159,7 @@ namespace DPE_SectionConstructor.Model
         /// <param name="color">Цвет скруглений</param>
         public List<OxyPlot.Series.FunctionSeries> GetFunctionSeriesList(OxyPlot.OxyColor color)
         {
+            
             double deg;
             double angle;            
             var FunctionSeriesList = new List<OxyPlot.Series.FunctionSeries>();
@@ -172,7 +175,7 @@ namespace DPE_SectionConstructor.Model
                     Double.TryParse(Regex.Replace(Actions[i], @"[^\d]+", ""), out deg);
                     r = Math.Sqrt(Math.Pow(DataMass[i][1].X - DataMass[i][0].X, 2) + Math.Pow(DataMass[i][1].Y - DataMass[i][0].Y, 2)); //Вычисляем радиус
                     func = (x) => DataMass[i][1].Y + Math.Sqrt(Math.Pow(r, 2) - Math.Pow(x - DataMass[i][1].X, 2)); //Формула дуги
-                    F = new OxyPlot.Series.FunctionSeries(func, DataMass[i][1].X, Math.Abs(r) + DataMass[i][1].X, 0.01) { Color = color };
+                    F = new OxyPlot.Series.FunctionSeries(func, DataMass[i][1].X, Math.Abs(r) + DataMass[i][1].X, 0.001) { Color = color };
                     angle = Angle + deg;
 
                     for (int j = 0; j < F.Points.Count; j++) 
@@ -203,6 +206,8 @@ namespace DPE_SectionConstructor.Model
         {
             return null;
         }
+
+        public virtual void Calculate() { }
 
         #endregion
     }

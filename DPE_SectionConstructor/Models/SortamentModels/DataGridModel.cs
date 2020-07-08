@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using static DPE_SectionConstructor.Models.Dictionary;
 
 namespace DPE_SectionConstructor.Models
 {
@@ -14,28 +15,7 @@ namespace DPE_SectionConstructor.Models
 
         public DataSet SortamentDS { get; }
         public string TableName { get; } = "DataGrid";
-        List<string> ColumnTitlesList;
-        public Dictionary<string, string> PropsDictionary = new Dictionary<string, string>
-        {
-            {"Марка",   "Marka" },
-            {"P, кг|м", "P" },
-            {"d, см",   "B" },
-            {"h, см",   "H" },
-            {"b, см",   "B" },
-            {"s, см",   "Ts" },
-            {"t, см",   "Tf" },
-            {"r, см",   "R" },
-            {"A, см",   "A" },
-            {"Ix, см4", "Ix" },
-            {"Wx, см3", "Wx" },
-            {"Sx, см3", "Sx" },
-            {"ix, см",  "I0x" },
-            {"Iy, см4", "Iy"  },
-            {"Wy, см3", "Wy"  },
-            {"Sy, см3", "Sy"  },
-            {"iy, см",  "I0y" },
-            {"It, см4", "It" }
-        };
+        List<string> ColumnTitlesList;   
 
         public DataGridModel(string type)
         {
@@ -57,7 +37,7 @@ namespace DPE_SectionConstructor.Models
                 SortamentDS.Tables[TableName].PrimaryKey = new DataColumn[] { SortamentDS.Tables[TableName].Columns["№"] };
                 SortamentDS.Tables[TableName].Columns["№"].AutoIncrement = true;
                 SortamentDS.Tables[TableName].Columns["№"].AutoIncrementSeed = 1;
-                ColumnTitlesList = PropsDictionary.Keys.ToList();
+                ColumnTitlesList = DBtoDataGridDictionary.Keys.ToList();
                 var i = Array.IndexOf(Types, type);
                 if (i == 0)
                 {   
@@ -104,7 +84,7 @@ namespace DPE_SectionConstructor.Models
                     foreach (DataColumn col in SortamentDS.Tables[TableName].Columns)
                     {
                         string value;
-                        if (PropsDictionary.TryGetValue(col.ColumnName, out value))
+                        if (DBtoDataGridDictionary.TryGetValue(col.ColumnName, out value))
                         {
                             newRow[col.ColumnName] = row[value];
                         }

@@ -5,13 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DPE_SectionConstructor.Models
-{
-    public enum SortamentTypesEnum { a, b, c };
-
+{    
     public class SortamentTypes
     {
-        
-
 
         public string[] Types {get;}
         public SortamentTypes()

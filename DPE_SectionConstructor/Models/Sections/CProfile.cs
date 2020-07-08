@@ -97,7 +97,7 @@ namespace DPE_SectionConstructor.Models
 
         public override object Clone()
         {
-            return new CProfile() { h = this.h, b = this.b, s = this.s, t = this.t, r = this.r, d = this.d, smX = this.smX, smY = this.smY, Angle = this.Angle };
+            return new CProfile() { h = this.h, b = this.b, s = this.s, t = this.t, r = this.r, R = this.R, d = this.d, smX = this.smX, smY = this.smY, Angle = this.Angle };
         }
     }
 }
